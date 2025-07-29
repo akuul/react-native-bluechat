@@ -53,6 +53,20 @@ You can use [react-native-permissions](https://github.com/zoontek/react-native-p
 
 ## Usage
 
+**Server**: Device that starts GATT Server. This is a device that calls `startAdvertising()` method.  
+**Client**: Device that connects to GATT Server. A devices that scans using `startScan()` method and connects to a scanned device using `connectToDevice(address)` method.
+
+Usual flow consists of
+
+- **Device A** that wants to act as GATT server calls `startAdvertising()` method. This method will make a device discoverable by others.
+- **Device B** starts scanning for devices using `startsScan()` and `onBluetoothScanListener` start emitting devices on the same `SERVICE_UUID`.
+- `onConnectionChangedListener` will emit GATT Connection change to determine connection state as well as role (client or server).
+- Based on your role, devices call `sendMessageToServer(message)` for client or `sendMessageToClient(messages)` for server.
+- `onMessageReceivedListener` listens for messages comming from other device. This means you are not receiving your own sent messages.
+- Finally, `disconnectFromDevice` will disconnect both client and server, as well as trigger `onConnectionChangedListener` marking as `STATE_DISCONNECTED`.
+
+You can read more about [Bluetooth Low Energy on Android docs](https://developer.android.com/develop/connectivity/bluetooth/ble/ble-overview)
+
 ```tsx
 //Hook
 import { useBluechat } from 'react-native-bluechat';
