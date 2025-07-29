@@ -2,7 +2,7 @@
 
 [![mit licence][license-badge]][license] ![Supported Platforms](https://img.shields.io/badge/platforms-android-ios?style=for-the-badge)
 
-### Simple one-on-one bluetooh chatting module using Bluetooth Low Energy (BLE)
+### Simple one-on-one bluetooth chatting module using Bluetooth Low Energy (BLE)
 
 This library was created as part of a learning exercise to explore and expose native Android events to JS using Turbo Modules.  
 Initial usage was meant for during-flight communication through Bluetooth.  
